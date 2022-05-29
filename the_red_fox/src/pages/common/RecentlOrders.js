@@ -4,7 +4,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import {Items} from './Data'
 
-const RecentOrders=(props)=>  {
+const RecentOrders=({props})=>  {
    
     let navigation = useNavigation();
     

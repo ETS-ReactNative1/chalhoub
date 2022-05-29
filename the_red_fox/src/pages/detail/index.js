@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -80,13 +80,29 @@ const categoryData = [
   },
  
 ];
-const Detail = () => {
+const Detail = ({route,navigation}) => {
  
- 
+  const { productID } = route.params;
+  const [productDetail, setproductDetail] = useState({});
+
+  useEffect(()=>{
+      getProductDetail();
+  },[])
+ const getProductDetail= async () =>{
+   for (let index = 0; index < Items.length; index++) {
+     if (Items[index].id == productID) {
+        await setproductDetail(Items[index])
+        return;
+     }
+     
+   }
+
+ }
  
  
   const renderItemDetail = () => {
-   
+    
+   console.log(productDetail);
     return (
       <ScrollView vertical showsVerticalScrollIndicator={false}>
         
@@ -128,14 +144,14 @@ const Detail = () => {
                 fontWeight: 'bold',
                 color: '#bbb',
               }}>
-              <Text>Tiger Medium Red</Text>
+              <Text>{productDetail.productName}</Text>
               <Text
             style={{
               fontSize: 15,
               
               color: '#707070',
             }}>
-           AED 250
+           {productDetail.productPrice}
           </Text>
           <Text
             style={{
@@ -144,7 +160,7 @@ const Detail = () => {
               paddingBottom: 5,
               color: '#707070',
             }}>
-           Available Sizes: S, M, L, XL
+           Available Sizes:{productDetail.availableSizes}
           </Text>
           <Text
             style={{
@@ -220,7 +236,7 @@ const Detail = () => {
               paddingTop: 5,
               paddingLeft: 10,
               color: '#707070',
-            }}>Opt for a bold look with this T-shirt its iconic Tiger print on the chest, it is sure to turn heads. Par it with jogging trousers and sneakers fro acasual sportswear look.</Text>
+            }}>{productDetail.description}</Text>
           <Text style={{
               paddingTop: 5,
               paddingLeft: 10,

@@ -239,9 +239,7 @@ const HomeScreen = ({navigation}) => {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 >
-                    <RecentOrders 
-                     
-                    />
+                    <RecentOrders />
                       
                 </ScrollView>
                 <View 
